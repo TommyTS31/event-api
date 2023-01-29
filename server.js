@@ -21,6 +21,8 @@ app.get("/", (req, res) => res.send("App is working"));
 
 app.listen(3000, () => console.log("API listening on port 3000!"));
 
+require("./database/connection.js");
+
 module.exports = {
   app,
 };
