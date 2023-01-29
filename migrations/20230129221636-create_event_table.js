@@ -11,6 +11,9 @@ module.exports = {
         primaryKey: true,
       },
       title: Sequelize.STRING(300),
+      description: Sequelize.STRING(900),
+      date: Sequelize.DATEONLY,
+      time: Sequelize.TIME,
     });
   },
 
