@@ -23,6 +23,8 @@ app.listen(3000, () => console.log("API listening on port 3000!"));
 
 require("./database/connection.js");
 
+require("./routes/routes")(app);
+
 module.exports = {
   app,
 };
