@@ -12,6 +12,7 @@ module.exports = {
       },
       first_name: Sequelize.STRING(100),
       last_name: Sequelize.STRING(100),
+      email: Sequelize.STRING(100),
       password: Sequelize.STRING(300),
     });
   },

@@ -12,8 +12,18 @@ module.exports = {
       },
       title: Sequelize.STRING(300),
       description: Sequelize.STRING(900),
-      date: Sequelize.DATEONLY,
-      time: Sequelize.TIME,
+      date: {
+        type: Sequelize.DATEONLY,
+        allowNull: true,
+      },
+      time: {
+        type: Sequelize.TIME,
+        allowNull: true,
+      },
+      location: {
+        type: Sequelize.STRING(300),
+        allowNull: true,
+      },
     });
   },
 

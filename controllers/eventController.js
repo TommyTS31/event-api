@@ -1,7 +1,7 @@
 const Event = require("../models/Event");
 
 exports.create_event = async function (req, res) {
-  const newEvent = Event.create({
+  const newEvent = await Event.create({
     title: req.body.event.title,
     description: req.body.event.description,
   });
@@ -13,7 +13,7 @@ exports.create_event = async function (req, res) {
 };
 
 exports.find_event_by_id = async function (req, res) {
-  const foundEvent = Event.findAll({
+  const foundEvent = await Event.findAll({
     where: {
       id: req.body.id,
     },
