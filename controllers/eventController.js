@@ -6,7 +6,7 @@ exports.create_event = async function (req, res) {
     description: req.body.event.description,
   });
   try {
-    res.send("Successfully added new event to database");
+    res.send(newEvent);
   } catch {
     res.status(400).send(e);
   }

@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const app = express();
 const bodyParser = require("body-parser");
+require("dotenv").config();
 
 // adding Helmet to enhance your API's security
 app.use(helmet());
