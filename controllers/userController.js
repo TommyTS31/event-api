@@ -11,7 +11,9 @@ exports.create_user = async function (req, res) {
       },
     })
   ) {
-    return res.status(400).send(process.env.SECRET_KEY);
+    return res
+      .status(400)
+      .send("A user with the same email address already exists");
   }
   //Hash password
   const hashedPassword = await bcrypt.genSalt(10).then((salt) => {
@@ -32,14 +34,28 @@ exports.create_user = async function (req, res) {
 };
 
 exports.login_user = async function (req, res) {
-  const foundUser = User.findOne({
+  // Finds the user
+  const user = await User.findOne({
     where: {
-      id: req.body.id,
+      email: req.body.user.email,
     },
   });
-  try {
-    res.send(foundUser);
-  } catch {
-    res.status(400).send("error");
-  }
+  // Checks password validity, creates and sends signed JWT
+  bcrypt.compare(req.body.user.password, user.password, function (err, result) {
+    if (result) {
+      authToken = jwt.sign(
+        { id: user.id, email: user.email },
+        process.env.SECRET_KEY,
+        {
+          expiresIn: "1800s",
+        }
+      );
+      return res.json(authToken);
+    }
+    if (err) {
+      return res.status(400).send("Something went wrong");
+    } else {
+      return res.send("Wrong email or password");
+    }
+  });
 };
