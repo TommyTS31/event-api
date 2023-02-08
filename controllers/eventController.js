@@ -13,11 +13,7 @@ exports.create_event = async function (req, res) {
 };
 
 exports.find_event_by_id = async function (req, res) {
-  const foundEvent = await Event.findAll({
-    where: {
-      id: req.body.id,
-    },
-  });
+  const foundEvent = await Event.findAll();
   try {
     res.send(foundEvent);
   } catch {

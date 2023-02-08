@@ -40,6 +40,9 @@ exports.login_user = async function (req, res) {
       email: req.body.user.email,
     },
   });
+  if (!user) {
+    return res.send("Wrong email or password");
+  }
   // Checks password validity, creates and sends signed JWT
   bcrypt.compare(req.body.user.password, user.password, function (err, result) {
     if (result) {
@@ -50,7 +53,7 @@ exports.login_user = async function (req, res) {
           expiresIn: "1800s",
         }
       );
-      return res.json(authToken);
+      return res.json({ token: authToken });
     }
     if (err) {
       return res.status(400).send("Something went wrong");
