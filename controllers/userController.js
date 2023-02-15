@@ -53,7 +53,12 @@ exports.login_user = async function (req, res) {
           expiresIn: "1800s",
         }
       );
-      return res.json({ token: authToken });
+      return res
+        .cookie("access_token", authToken, {
+          httpOnly: true,
+        })
+        .status(200)
+        .json({ message: "Logged in successfully 😊 👌" });
     }
     if (err) {
       return res.status(400).send("Something went wrong");

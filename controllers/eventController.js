@@ -4,6 +4,9 @@ exports.create_event = async function (req, res) {
   const newEvent = await Event.create({
     title: req.body.event.title,
     description: req.body.event.description,
+    date: req.body.event.date,
+    time: req.body.event.time,
+    location: req.body.event.location,
   });
   try {
     res.send(newEvent);
@@ -13,7 +16,12 @@ exports.create_event = async function (req, res) {
 };
 
 exports.find_event_by_id = async function (req, res) {
-  const foundEvent = await Event.findAll();
+  const foundEvent = await Event.findOne({
+    where: {
+      id: req.body.id,
+    },
+  });
+  console.log(foundEvent);
   try {
     res.send(foundEvent);
   } catch {

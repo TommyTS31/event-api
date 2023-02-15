@@ -5,6 +5,6 @@ const eventController = require("../controllers/eventController");
 router.post("/create", eventController.create_event);
 
 // FIND EVENT BY ID
-router.get("/find", eventController.find_event_by_id);
+router.post("/find", eventController.find_event_by_id);
 
 module.exports = router;

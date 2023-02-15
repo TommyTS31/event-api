@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 
-module.exports = database.define(
-  "Event",
+const Event = database.define(
+  "event",
   {
     id: {
       type: Sequelize.INTEGER(11),
@@ -23,6 +23,12 @@ module.exports = database.define(
       type: Sequelize.STRING(300),
       allowNull: true,
     },
+    creator_id: {
+      type: Sequelize.INTEGER(11),
+      allowNull: false,
+    },
   },
   { timestamps: false }
 );
+
+module.exports = Event;

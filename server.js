@@ -10,7 +10,7 @@ require("dotenv").config();
 app.use(helmet());
 
 // enabling CORS for all requests
-app.use(cors());
+app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
 // adding morgan to log HTTP requests
 app.use(morgan("combined"));
@@ -23,6 +23,7 @@ app.get("/", (req, res) => res.send("App is working"));
 app.listen(5000, () => console.log("API listening on port 5000!"));
 
 require("./database/connection.js");
+require("./database/sync.js");
 
 require("./routes/routes")(app);
 

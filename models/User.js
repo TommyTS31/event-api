@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 
-module.exports = database.define(
-  "User",
+const User = database.define(
+  "user",
   {
     id: {
       type: Sequelize.INTEGER(11),
@@ -16,3 +16,5 @@ module.exports = database.define(
   },
   { timestamps: false }
 );
+
+module.exports = User;
