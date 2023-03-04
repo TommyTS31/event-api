@@ -47,3 +47,12 @@ exports.find_event_by_id = async function (req, res) {
     res.status(400).send("error");
   }
 };
+
+exports.find_all_events_by_user_id = async function (req, res) {
+  const foundEvent = await Event.findOne({
+    where: {
+      creator_id: res.locals.user.id,
+    },
+    include: Tag,
+  });
+};
