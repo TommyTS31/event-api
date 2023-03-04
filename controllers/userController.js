@@ -53,12 +53,7 @@ exports.login_user = async function (req, res) {
           expiresIn: "1800s",
         }
       );
-      return res
-        .cookie("access_token", authToken, {
-          httpOnly: true,
-        })
-        .status(200)
-        .json({ message: "Logged in successfully 😊 👌" });
+      return res.status(200).json({ token: authToken });
     }
     if (err) {
       return res.status(400).send("Something went wrong");
@@ -66,4 +61,13 @@ exports.login_user = async function (req, res) {
       return res.send("Wrong email or password");
     }
   });
+};
+
+exports.find_user_by_id = async function (req, res) {
+  const user = await User.findOne({
+    where: {
+      id: req.body.user.id,
+    },
+  });
+  res.send(user);
 };

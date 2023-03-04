@@ -4,7 +4,7 @@ const Tag = require("../models/Tag");
 const Event_Tag = require("../models/Event_Tag");
 
 database
-  .sync()
+  .sync({ alter: true })
   .then((result) => {
     console.log("Synced successfully");
   })

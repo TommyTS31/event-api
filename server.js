@@ -24,6 +24,7 @@ app.listen(5000, () => console.log("API listening on port 5000!"));
 
 require("./database/connection.js");
 require("./database/sync.js");
+require("./database/associations.js");
 
 require("./routes/routes")(app);
 
