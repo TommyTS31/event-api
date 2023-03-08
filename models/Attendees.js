@@ -9,8 +9,11 @@ const Attendees = database.define(
       autoIncrement: true,
       primaryKey: true,
     },
-    event_id: { type: Sequelize.INTEGER(11), allowNull: false },
-    user_id: { type: Sequelize.INTEGER(11), allowNull: false },
+    date_created: {
+      type: Sequelize.DATE,
+      allowNull: false,
+      defaultValue: Sequelize.NOW,
+    },
   },
   { timestamps: false }
 );
