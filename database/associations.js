@@ -38,5 +38,3 @@ async function test() {
   });
   console.log(attendees.creator);
 }
-
-test();

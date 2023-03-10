@@ -9,6 +9,8 @@ router.post("/create", middleware.verifyToken, eventController.create_event);
 // FIND EVENT BY ID
 router.post("/find", eventController.find_event_by_id);
 
+router.get("/get_all", eventController.get_all_events);
+
 // GET ALL CREATOR EVENTS
 router.post(
   "/find_all_by_user",

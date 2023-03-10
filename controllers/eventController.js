@@ -53,6 +53,15 @@ exports.find_event_by_id = async function (req, res) {
   }
 };
 
+exports.get_all_events = async function (req, res) {
+  try {
+    const allEvents = await Event.findAll({ include: Tag });
+    res.send(allEvents);
+  } catch (err) {
+    res.status(401).send(err);
+  }
+};
+
 exports.register_user_to_event = async function (req, res) {
   try {
     const registered = await Attendee.create();
