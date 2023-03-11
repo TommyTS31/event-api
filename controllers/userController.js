@@ -41,7 +41,7 @@ exports.login_user = async function (req, res) {
     },
   });
   if (!user) {
-    return res.send("Wrong email or password");
+    return res.status(401).send("Wrong email or password");
   }
   // Checks password validity, creates and sends signed JWT
   bcrypt.compare(req.body.user.password, user.password, function (err, result) {
@@ -55,7 +55,7 @@ exports.login_user = async function (req, res) {
     if (err) {
       return res.status(400).send("Something went wrong");
     } else {
-      return res.send("Wrong email or password");
+      return res.status(400).send("Wrong email or password");
     }
   });
 };

@@ -30,11 +30,21 @@ User.hasMany(Event, { foreignKey: "creator_id" });
 Event.belongsTo(User, { foreignKey: "creator_id", as: "creator" });
 
 async function test() {
-  const attendees = await Event.findAll({
-    where: {
-      id: 1,
-    },
-    include: { model: User, as: "creator" },
+  const attendees = await Attendee.count({
+    include: [
+      {
+        model: Event,
+        attributes: ["id"],
+        where: {
+          creator_id: 1,
+        },
+      },
+      {
+        model: User,
+        attributes: ["id"],
+      },
+    ],
   });
-  console.log(attendees.creator);
+
+  console.log(attendees);
 }
